@@ -4,7 +4,8 @@
 .card__image {
   height: 413px;
   width: 100%;
-  object-fit: 100%;
+  border-radius: 8px;
+  object-fit: cover;
   display: block;
 }
 .card__content {
@@ -45,5 +46,10 @@
 @media screen and (max-width: 627px) {
   .card__image {
     height: 288px;
+  }
+}
+@media screen and (max-width: 320px) {
+  cards__list {
+    grid-template-columns: repeat(auto-fit, 144px);
   }
 }
