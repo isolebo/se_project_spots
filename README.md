@@ -19,3 +19,6 @@ as well.
 
 **Images**
 ![Spot Project](../se_project_spots/spot.png)
+
+**Video**
+https://drive.google.com/file/d/1QEnHau2JHfe988rRMUSWmIat8k4dgx1q/view?usp=drivesdk
