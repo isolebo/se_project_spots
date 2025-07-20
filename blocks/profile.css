@@ -54,7 +54,7 @@
 .profile__edit-btn:hover {
   opacity: 80%;
 }
-.profile__add-btn {
+.profile__new-post-btn {
   display: flex;
   justify-content: center;
   margin-top: auto;
@@ -88,7 +88,7 @@
     margin: 0 0 12px;
     margin-right: 0;
   }
-  .profile__add-btn {
+  .profile__new-post-btn {
     margin: 0;
     max-width: 288px;
     width: 100%;

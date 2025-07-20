@@ -12,6 +12,10 @@
   padding: 10px;
 }
 
+.modal_is-opened {
+  visibility: visible;
+}
+
 .modal__container {
   max-width: 730px;
   width: 100%;
