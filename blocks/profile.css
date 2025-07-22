@@ -54,6 +54,7 @@
 .profile__edit-btn:hover {
   opacity: 80%;
 }
+
 .profile__new-post-btn {
   display: flex;
   justify-content: center;
@@ -70,7 +71,7 @@
   cursor: pointer;
 }
 
-.profile__add-btn:hover {
+.profile__new-post-btn:hover {
   opacity: 80%;
 }
 
