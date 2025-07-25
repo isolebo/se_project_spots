@@ -98,10 +98,6 @@ modal__input::placeholder {
 
 @media screen and (max-width: 680px) {
   .modal__container {
-    top: 134px;
-    left: 10px;
-    border-radius: 8px;
-    gap: 24px;
     padding: 12px;
   }
   .modal__submit-btn {
@@ -110,13 +106,14 @@ modal__input::placeholder {
   }
 
   .modal__close-btn {
-    margin: auto;
+    top: 5px;
+    right: 5px;
   }
-  .modal_title {
+  .modal__title {
     font-family: Poppins, Arial, sans-serif;
     font-weight: 500;
     font-style: Medium;
-    font-size: 16px;
+    font-size: 20px;
   }
   .modal__input {
     width: 100%;
@@ -126,6 +123,5 @@ modal__input::placeholder {
     font-size: 16px;
     line-height: 100%;
     letter-spacing: 0%;
-    margin-bottom: 45pxS;
   }
 }
