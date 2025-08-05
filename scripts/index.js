@@ -35,6 +35,23 @@ const newPostModal = document.querySelector("#new-post-modal");
 const newPostCloseBtn = newPostModal.querySelector(".modal__close-btn");
 const newPostProfileForm = newPostModal.querySelector(".modal__form");
 
+const cardTemplate = document
+  .querySelector("#card-template")
+  .content.querySelector(".card");
+
+const cardsList = document.querySelector(".cards__list");
+
+function getCardElement(data) {
+  const cardElement = cardTemplate.cloneNode(true);
+  const cardTitleEl = cardElement.querySelector(".card__title");
+  const cardImageEl = cardElement.querySelector(".card__image");
+  cardImageEl.src = data.link;
+  cardImageEl.alt = data.name;
+  cardTitleEl.textContent = data.name;
+
+  return cardElement;
+}
+
 const editProfileNameInput = editProfileModal.querySelector(
   "#profile-name-input"
 );
@@ -95,6 +112,6 @@ function handleNewPostProfileSubmit(evt) {
 newPostProfileForm.addEventListener("submit", handleNewPostProfileSubmit);
 
 initialCards.forEach(function (item) {
-  console.log(item.name);
-  console.log(item.link);
+  const cardElement = getCardElement(item);
+  cardsList.append(cardElement);
 });
