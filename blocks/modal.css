@@ -43,6 +43,7 @@
   justify-content: center;
   background-color: transparent;
   border: none;
+  cursor: pointer;
 }
 .modal__close-btn_type_preview {
   top: 0;
@@ -50,8 +51,8 @@
 }
 
 .modal__close-btn_type_preview:hover {
-  width: 40;
-  height: 40;
+  width: 40px;
+  height: 40px;
   opacity: 1;
   color: #212121;
 }
@@ -91,6 +92,7 @@
   line-height: 100%;
   letter-spacing: 0%;
   box-sizing: border-box;
+  border-bottom: 6px solid #212121;
 }
 
 .modal__input::placeholder {
@@ -109,6 +111,7 @@
   font-size: 16px;
   line-height: 100%;
   letter-spacing: 0%;
+  cursor: pointer;
 }
 .modal__image-container {
   position: relative;
@@ -127,8 +130,7 @@
   background: #212121;
   width: 198px;
   height: 32px;
-  top: 750px;
-  left: 223px;
+  position: relative;
   border-radius: 8px;
   padding: 4px 8px 4px 8px;
   padding-left: 8px;

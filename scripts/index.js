@@ -63,10 +63,9 @@ function getCardElement(data) {
     cardLikeBtn.classList.toggle("card__like-btn_active");
   });
 
-  const cardDeleteBtn = cardElement.querySelector(".card__delete-btn ");
+  const cardDeleteBtn = cardElement.querySelector(".card__delete-btn");
   cardDeleteBtn.addEventListener("click", () => {
     cardElement.remove();
-    cardElement.null;
   });
 
   cardImageEl.addEventListener("click", () => {
@@ -76,12 +75,12 @@ function getCardElement(data) {
     openModal(previewModal);
   });
 
-  previewModalCloseBtn.addEventListener("click", function () {
-    closeModal(previewModal);
-  });
-
   return cardElement;
 }
+
+previewModalCloseBtn.addEventListener("click", function () {
+  closeModal(previewModal);
+});
 
 const editProfileNameInput = editProfileModal.querySelector(
   "#profile-name-input"
@@ -135,15 +134,12 @@ function handleNewPostProfileSubmit(evt) {
   evt.preventDefault();
 
   const cardElement = getCardElement({
-    name: newPostImageInput.value,
-    link: newPostCaptionInput.value,
+    link: newPostImageInput.value,
+    name: newPostCaptionInput.value,
   });
-  cardsList.append(cardElement);
+  cardsList.prepend(cardElement);
 
   closeModal(newPostModal);
-
-  console.log(imageLink);
-  console.log(newCaption);
 }
 
 newPostProfileForm.addEventListener("submit", handleNewPostProfileSubmit);
@@ -151,4 +147,5 @@ newPostProfileForm.addEventListener("submit", handleNewPostProfileSubmit);
 initialCards.forEach(function (item) {
   const cardElement = getCardElement(item);
   cardsList.append(cardElement);
+  newPostProfileForm.requestFullscreen();
 });
