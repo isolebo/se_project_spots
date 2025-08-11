@@ -128,7 +128,7 @@
 .modal__caption {
   color: white;
   background: #212121;
-  width: 198px;
+  width: fit-content;
   height: 32px;
   position: relative;
   border-radius: 8px;
