@@ -138,6 +138,7 @@ function handleNewPostProfileSubmit(evt) {
     name: newPostCaptionInput.value,
   });
   cardsList.prepend(cardElement);
+  evt.target.reset();
 
   closeModal(newPostModal);
 }

@@ -28,9 +28,11 @@
   width: 32px;
   cursor: pointer;
   border: none;
+  border-style: none;
+  background-color: transparent;
 }
 .card__delete-btn:hover {
-  background-color: #ff6565;
+  background-image: url("../images/deleteHover.svg");
 }
 
 .card__title {
@@ -48,28 +50,25 @@
 }
 
 .card__like-btn {
-  background-image: url(../images/like.svg);
+  background-image: url(../images/liked.svg);
   background-size: contain;
   background-repeat: no-repeat;
   width: 23px;
   height: 20px;
-  border: none;
+  border-style: none;
   background-color: transparent;
-  opacity: 40%;
   cursor: pointer;
 }
-
 .card__like-btn:hover {
   color: #212121;
   opacity: 1;
 }
-
 .card__like-btn_active {
-  background-image: url(../images/liked-active.svg);
+  background-image: url(../images/likedActive.svg);
 }
 
 .card__like-btn_active:hover {
-  opacity: 1;
+  opacity: 50%;
 }
 
 @media screen and (max-width: 627px) {
