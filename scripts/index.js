@@ -48,7 +48,8 @@ const cardTemplate = document
   .querySelector("#card-template")
   .content.querySelector(".card");
 
-const cardsList = document.querySelector(".cards__list");
+const cardList = document.querySelector(".cards__list");
+const cardSubmitBtn = newPostModal.querySelector(".modal__submit-btn");
 
 function getCardElement(data) {
   const cardElement = cardTemplate.cloneNode(true);
@@ -89,7 +90,7 @@ const editProfileDescriptionInput = editProfileModal.querySelector(
   "#profile-description-input"
 );
 
-const newPostImageInput = newPostModal.querySelector("#card-imageLink-input");
+const newPostImageInput = newPostModal.querySelector("#card-link-input");
 const newPostCaptionInput = newPostModal.querySelector("#card-caption-input");
 
 const profileNameEl = document.querySelector(".profile__name");
@@ -102,10 +103,12 @@ function openModal(modal) {
 function closeModal(modal) {
   modal.classList.remove("modal_is-opened");
 }
+editProfileDescriptionInput;
 
-editProfileBtn.addEventListener("click", function () {
+editProfileBtn.addEventListener("click", () => {
   editProfileNameInput.value = profileNameEl.textContent;
   editProfileDescriptionInput.value = profileDescriptionEl.textContent;
+
   openModal(editProfileModal);
 });
 
@@ -125,9 +128,9 @@ function handleEditProfileSubmit(evt) {
   evt.preventDefault();
   profileNameEl.textContent = editProfileNameInput.value;
   profileDescriptionEl.textContent = editProfileDescriptionInput.value;
+  disableButton(cardSubmitBtn, settings);
   closeModal(editProfileModal);
 }
-
 editProfileForm.addEventListener("submit", handleEditProfileSubmit);
 
 function handleNewPostProfileSubmit(evt) {
@@ -137,15 +140,14 @@ function handleNewPostProfileSubmit(evt) {
     link: newPostImageInput.value,
     name: newPostCaptionInput.value,
   });
-  cardsList.prepend(cardElement);
+  cardList.prepend(cardElement);
   evt.target.reset();
-
+  disableButton(cardSubmitBtn, settings);
   closeModal(newPostModal);
 }
 
 newPostProfileForm.addEventListener("submit", handleNewPostProfileSubmit);
-
 initialCards.forEach(function (item) {
   const cardElement = getCardElement(item);
-  cardsList.append(cardElement);
+  cardList.append(cardElement);
 });
