@@ -20,20 +20,20 @@ const showInputError = (formEl, inputEl, errorMsg, config) => {
   );
   errorMesgEl.textContent = errorMsg;
 
-  inputEl.classList.add("modal__input_type_error");
+  inputEl.classList.add(config.inputErrorClass);
 };
 
 const hideInputError = (formEl, inputEl, errorMsg, config) => {
   const errorMesgEl = formEl.querySelector(`#${inputEl.id}-error`);
   errorMesgEl.textContent = "";
-  inputEl.classList.remove("modal__input_type_error");
+  inputEl.classList.remove(config.inputErrorClass);
 };
 
 const checkInputValidity = (formEl, inputEl) => {
   if (!inputEl.validity.valid) {
     showInputError(formEl, inputEl, inputEl.validationMessage);
   } else {
-    hideInputError(formEl, inputEl);
+    hideInputError(formEl, inputEl, config.errorClass);
   }
 };
 
@@ -47,21 +47,26 @@ const setEventListeners = (formEl, config) => {
     });
   };
 
-  const toggleButtonState = (inputList, buttonEl) => {
+  const toggleButtonState = (inputList, buttonEl, config) => {
     if (hasInvalidInput(inputList)) {
-      disableButton(buttonEl);
+      disableButton(buttonEl, config.inactiveButtonClass);
     } else {
       buttonEl.disabled = false;
     }
   };
 
-  const disableButton = (buttonEl, config) => {
+  const disableButton = (buttonEl) => {
     buttonEl.disabled = true;
   };
 
-  toggleButtonState(inputList, buttonElement, config);
+  // const resetValidation = (formel, inputList) => {
+  //   inputList.forEach((input) => {
+  //     hideInputError(formEl, input);
+  //   });
+  // };
 
-  inputList.forEach((inputElement) => {
+  toggleButtonState(inputList, buttonElement, config);
+  inputList.frEach((inputElement) => {
     inputElement.addEventListener("input", function () {
       checkInputValidity(formEl, inputElement, config);
       toggleButtonState(inputList, buttonElement, config);
