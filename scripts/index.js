@@ -50,6 +50,7 @@ const cardTemplate = document
 
 const cardList = document.querySelector(".cards__list");
 const cardSubmitBtn = editProfileModal.querySelector(".modal__submit-btn");
+const postSubmitBtn = newPostModal.querySelector(".modal__submit-btn");
 
 function getCardElement(data) {
   const cardElement = cardTemplate.cloneNode(true);
@@ -121,10 +122,6 @@ editProfileBtn.addEventListener("click", () => {
   editProfileNameInput.value = profileNameEl.textContent;
   editProfileDescriptionInput.value = profileDescriptionEl.textContent;
 
-  // resetValidation(editProfileForm, [
-  //   editProfileNameInput,
-  //   editProfileDescriptionInput,
-  // ]);
   openModal(editProfileModal);
 });
 
@@ -158,7 +155,7 @@ function handleNewPostProfileSubmit(evt) {
   });
   cardList.prepend(cardElement);
   evt.target.reset();
-  disableButton(cardSubmitBtn);
+  disableButton(postSubmitBtn, settings);
   closeModal(newPostModal);
 }
 
