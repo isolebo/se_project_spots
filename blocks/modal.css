@@ -59,10 +59,9 @@
   margin: 0 0 32px;
   font-family: Poppins, Arial, sans-serif;
   font-weight: 500;
-  font-style: Medium;
+  font-style: normal;
   font-size: 32px;
   line-height: 100%;
-  letter-spacing: 0%;
   color: #212121;
 }
 
@@ -87,10 +86,9 @@
   border: 1px solid #21212166;
   font-family: Poppins, Arial, sans-serif;
   font-weight: 500;
-  font-style: Medium;
+  font-style: normal;
   font-size: 20px;
   line-height: 100%;
-  letter-spacing: 0%;
   box-sizing: border-box;
 }
 .modal__input_type_error {
@@ -105,6 +103,13 @@
   display: block;
   color: rgba(255, 0, 0, 0.7);
   margin-top: 8px;
+  visibility: hidden;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 17px;
+}
+.modal__error_visible {
+  visibility: visible;
 }
 
 .modal__submit-btn {
@@ -115,16 +120,16 @@
   color: #fcf5e5;
   font-family: Poppins, Arial, sans-serif;
   font-weight: 500;
-  font-style: Medium;
+  font-style: normal;
   font-size: 16px;
   line-height: 100%;
-  letter-spacing: 0%;
   cursor: pointer;
 }
 
-.modal__submit-btn:disabled {
+.modal__submit-btn_disabled {
   cursor: default;
-  background-color: gray;
+  pointer-events: none;
+  opacity: 50%;
 }
 .modal__image-container {
   position: relative;
@@ -146,13 +151,11 @@
   position: relative;
   border-radius: 8px;
   padding: 4px 8px 4px 8px;
-  padding-left: 8px;
   font-family: Poppins, Arial, sans-serif;
   font-weight: 500;
   font-style: Medium;
   font-size: 20px;
   line-height: 120%;
-  letter-spacing: 0%;
   align-items: center;
 }
 
@@ -170,19 +173,16 @@
     right: 12px;
   }
   .modal__title {
-    font-family: Poppins, Arial, sans-serif;
     font-weight: 500;
     font-style: Medium;
     font-size: 20px;
   }
   .modal__input {
     width: 100%;
-    font-family: Poppins, Arial, sans-serif;
     font-weight: 500;
     font-style: Medium;
     font-size: 16px;
     line-height: 100%;
-    letter-spacing: 0%;
   }
 }
 

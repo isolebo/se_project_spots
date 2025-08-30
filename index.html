@@ -82,7 +82,10 @@
                 minlength="2"
                 maxlength="40"
               />
-              <span class="modal__error" id="profile-name-input-error"></span>
+              <span
+                class="modal__error modal__error_visible"
+                id="profile-name-input-error"
+              ></span>
             </label>
             <label for="profile-description-input" class="modal__label"
               >Description
@@ -96,7 +99,7 @@
                 maxlength="200"
               />
               <span
-                class="modal__error"
+                class="modal__error modal__error_visible"
                 id="profile-description-input-error"
               ></span>
             </label>
@@ -122,7 +125,10 @@
                 placeholder="Place a link to the picture"
                 required
               />
-              <span id="card-link-input-error" class="modal__error"></span>
+              <span
+                id="card-link-input-error"
+                class="modal__error modal__error_visible"
+              ></span>
             </label>
             <label for="card-caption-input" class="modal__label"
               >Caption
@@ -135,7 +141,10 @@
                 minlength="2"
                 maxlength="30"
               />
-              <span class="modal__error" id="card-caption-input-error"></span>
+              <span
+                class="modal__error modal__error_visible"
+                id="card-caption-input-error"
+              ></span>
             </label>
             <button type="submit" class="modal__submit-btn">Save</button>
           </form>
