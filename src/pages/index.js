@@ -149,6 +149,10 @@ avatarModalBtn.addEventListener("click", function () {
   openModal(avatarModal);
 });
 
+avatarCloseBtn.addEventListener("click", function () {
+  closeModal(avatarModal);
+});
+
 avatarProfileForm.addEventListener("submit", handleAvatarSubmit);
 
 function handleEditProfileSubmit(evt) {
