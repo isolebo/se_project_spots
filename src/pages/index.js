@@ -6,6 +6,7 @@ import {
   disableButton,
 } from "../scripts/validation.js";
 import Api from "../utils/Api.js";
+import { setButtonText } from "../utils/helpers.js";
 
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -61,6 +62,7 @@ const cardTemplate = document
   .content.querySelector(".card");
 const cardList = document.querySelector(".cards__list");
 const cardSubmitBtn = editProfileModal.querySelector(".modal__submit-btn");
+const cancelDeleteBtn = deleteModal.querySelector("#cancel-delete-btn");
 
 let selectedCard, selectedCardId;
 
@@ -87,11 +89,11 @@ function getCardElement(data) {
   cardImageEl.src = data.link;
   cardImageEl.alt = data.name;
   cardTitleEl.textContent = data.name;
-  cardLikeBtn.addEventListener("click", () => {
-    cardLikeBtn.classList.toggle("card__like-btn_active");
-  });
-
-  cardDeleteBtn.addEventListener("click", (evt) =>
+  cardLikeBtn.addEventListener("click", (evt) =>
+    handleLike(evt, cardLikeBtn, data)
+  );
+  cardLikeBtn.classList.toggle("card__like-btn_active", data.isLiked);
+  cardDeleteBtn.addEventListener("click", () =>
     handleDeleteCard(cardElement, data._id)
   );
 
@@ -102,6 +104,21 @@ function getCardElement(data) {
     openModal(previewModal);
   });
   return cardElement;
+}
+
+function handleLike(evt, cardLikeBtn, data) {
+  evt.target.classList.toggle("card__like-btn_active");
+  const isLiked = data.isLiked;
+  api
+    .changeLikeStatus(data._id, isLiked)
+    .then((updatedCard) => {
+      data.isLiked = updatedCard.isLiked;
+      cardLikeBtn.classList.toggle(
+        "card__like-btn_active",
+        updatedCard.isLiked
+      );
+    })
+    .catch(console.error);
 }
 
 function handleDeleteCard(cardElement, cardId) {
@@ -167,6 +184,12 @@ avatarCloseBtn.addEventListener("click", function () {
 
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
+
+  const submitBtn = evt.submitter;
+  console.log(submitBtn);
+
+  setButtonText(submitBtn, true, "Save", "Saving...");
+
   api
     .editUserInfo({
       name: editProfileNameInput.value,
@@ -178,13 +201,19 @@ function handleEditProfileSubmit(evt) {
       closeModal(editProfileModal);
       evt.target.reset();
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      setButtonText(submitBtn, false, "Save", "Saving");
+    });
 }
 
 editProfileForm.addEventListener("submit", handleEditProfileSubmit);
 
 function handleNewPostProfileSubmit(evt) {
   evt.preventDefault();
+  const submitBtn = evt.submitter;
+  setButtonText(submitBtn, true, "Update", "Updating");
+
   api
     .addNewCard({
       link: newPostImageInput.value,
@@ -197,35 +226,49 @@ function handleNewPostProfileSubmit(evt) {
       disableButton(postSubmitBtn, settings);
       closeModal(newPostModal);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      setButtonText(submitBtn, false, "Update", "Updating...");
+    });
 }
 newPostProfileForm.addEventListener("submit", handleNewPostProfileSubmit);
 
 function handleAvatarSubmit(evt) {
   evt.preventDefault();
+  const submitBtn = evt.submitter;
+  setButtonText(submitBtn, true, "Post", "Posting");
   api
     .editAvatarInfo({ avatar: avatarInput.value })
     .then((data) => {
       profileAvatarEl.src = data.avatar;
       closeModal(avatarModal);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      setButtonText(submitBtn, false, "Post", "Posting");
+    });
 }
 avatarProfileForm.addEventListener("submit", handleAvatarSubmit);
 
 function handleDeleteSubmit(evt) {
   evt.preventDefault();
-  console.log("selectedCardId:", selectedCardId);
+  const submitBtn = evt.submitter;
+  setButtonText(submitBtn, true, "Delete", "Deleting");
+
   api
     .deleteCard(selectedCardId)
     .then(() => {
       selectedCard.remove();
       closeModal(deleteModal);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      setButtonText(submitBtn, false, "Delete", "Deleting");
+    });
 }
 
 deleteForm.addEventListener("submit", handleDeleteSubmit);
 deleteModalCloseBtn.addEventListener("click", () => closeModal(deleteModal));
+cancelDeleteBtn.addEventListener("click", () => closeModal(deleteModal));
 
 enableValidation(settings);

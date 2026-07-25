@@ -172,6 +172,7 @@
 #delete-modal .modal__title {
   text-align: center;
   font-size: 24px;
+  padding-top: 80px;
 }
 
 #delete-modal .modal__form {
@@ -192,7 +193,7 @@
 }
 
 #delete-modal .modal__button:first-child {
-  background-color: #e3635a; /* ✅ red color from design */
+  background-color: #e3635a;
   color: #fff;
   border: none;
 }

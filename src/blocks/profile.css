@@ -62,7 +62,8 @@
   align-items: flex-end;
   justify-content: center;
   visibility: hidden;
-  /* finish avatar btn styles */
+
+  cursor: pointer;
 }
 .profile__avatar-container:hover .profile__avatar-btn {
   visibility: visible;
@@ -72,6 +73,7 @@
 }
 .profile__avatar-btn::after {
   content: "Edit Avatar";
+  color: white;
 }
 
 .profile__new-post-btn {
@@ -112,8 +114,6 @@
     visibility: visible;
   }
 
-  /* set content of ::after element to " "  */
-  /* finish mobile setting of avatar btn styles */
   .profile__new-post-btn {
     margin: 0;
     max-width: 288px;
