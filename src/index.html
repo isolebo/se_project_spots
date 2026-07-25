@@ -200,5 +200,29 @@
         </form>
       </div>
     </div>
+    <!-- style the modal -->
+    <div class="modal" id="delete-modal">
+      <div class="modal__container">
+        <button type="button" class="modal__close-btn">
+          <img src="<%=require('./images/close.svg')%>" alt="Close Icon" />
+        </button>
+        <button
+          type="button"
+          class="modal__close"
+          aria-label="Close modal"
+        ></button>
+        <h2 class="modal__title">
+          Are you sure you waant to delete this image?
+        </h2>
+        <form class="modal__form" id="delete-form">
+          <button type="submit" class="modal__button modal__submit-btn">
+            Deleting
+          </button>
+          <button type="button" class="modal__button" id="cancel-delete-btn">
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
   </body>
 </html>

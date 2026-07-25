@@ -49,6 +49,8 @@ const previewModalCloseBtn = previewModal.querySelector(".modal__close-btn");
 const previewImageEl = previewModal.querySelector(".modal__image");
 const previewCaptionEl = previewModal.querySelector(".modal__caption");
 
+const deleteModal = document.querySelector("#delete-modal");
+
 const cardTemplate = document
   .querySelector("#card-template")
   .content.querySelector(".card");
@@ -72,6 +74,7 @@ function getCardElement(data) {
 
   const cardDeleteBtn = cardElement.querySelector(".card__delete-btn");
   cardDeleteBtn.addEventListener("click", () => {
+    openModal(deleteModal);
     cardElement.remove();
   });
 
@@ -153,8 +156,6 @@ avatarCloseBtn.addEventListener("click", function () {
   closeModal(avatarModal);
 });
 
-avatarProfileForm.addEventListener("submit", handleAvatarSubmit);
-
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
   api
@@ -163,10 +164,10 @@ function handleEditProfileSubmit(evt) {
       about: editProfileDescriptionInput.value,
     })
     .then((data) => {
-      //use data instead of input values
       profileNameEl.textContent = data.name;
       profileDescriptionEl.textContent = data.about;
       closeModal(editProfileModal);
+      evt.target.reset();
     })
     .catch(console.error);
 }
@@ -175,19 +176,21 @@ editProfileForm.addEventListener("submit", handleEditProfileSubmit);
 
 function handleNewPostProfileSubmit(evt) {
   evt.preventDefault();
-
-  const cardElement = getCardElement({
-    link: newPostImageInput.value,
-    name: newPostCaptionInput.value,
-  });
-  cardList.prepend(cardElement);
-  evt.target.reset();
-  disableButton(postSubmitBtn, settings);
-  closeModal(newPostModal);
+  api
+    .addNewCard({
+      link: newPostImageInput.value,
+      name: newPostCaptionInput.value,
+    })
+    .then((data) => {
+      const cardElement = getCardElement(data);
+      cardList.prepend(cardElement);
+      evt.target.reset();
+      disableButton(postSubmitBtn, settings);
+      closeModal(newPostModal);
+    })
+    .catch(console.error);
 }
 newPostProfileForm.addEventListener("submit", handleNewPostProfileSubmit);
-
-// to do finish function
 
 function handleAvatarSubmit(evt) {
   evt.preventDefault();
@@ -199,5 +202,8 @@ function handleAvatarSubmit(evt) {
     })
     .catch(console.error);
 }
+avatarProfileForm.addEventListener("submit", handleAvatarSubmit);
+
+const deleteModalCloseBtn = deleteModal.querySelector(".modal__close-btn");
 
 enableValidation(settings);
