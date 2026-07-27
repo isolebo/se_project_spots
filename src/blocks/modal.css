@@ -226,6 +226,24 @@
     line-height: 100%;
     font-style: normal;
   }
+  #delete-modal .modal__container {
+    width: 100%;
+    padding: 32px 20px;
+    gap: 20px;
+  }
+
+  #delete-modal .modal__title {
+    font-size: 20px;
+  }
+
+  #delete-modal .modal__form {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  #delete-modal .modal__button {
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 627px) {

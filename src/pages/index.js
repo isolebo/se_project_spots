@@ -107,7 +107,6 @@ function getCardElement(data) {
 }
 
 function handleLike(evt, cardLikeBtn, data) {
-  evt.target.classList.toggle("card__like-btn_active");
   const isLiked = data.isLiked;
   api
     .changeLikeStatus(data._id, isLiked)
@@ -140,6 +139,8 @@ function openModal(modal) {
 
 function closeModal(modal) {
   modal.classList.remove("modal_is-opened");
+  document.removeEventListener("click", handleClick);
+  document.removeEventListener("keydown", handleEscape);
 }
 const handleEscape = (event) => {
   const modal = document.querySelector(".modal_is-opened");
@@ -212,7 +213,7 @@ editProfileForm.addEventListener("submit", handleEditProfileSubmit);
 function handleNewPostProfileSubmit(evt) {
   evt.preventDefault();
   const submitBtn = evt.submitter;
-  setButtonText(submitBtn, true, "Update", "Updating");
+  setButtonText(submitBtn, true, "Save", "Saving...");
 
   api
     .addNewCard({
@@ -228,7 +229,7 @@ function handleNewPostProfileSubmit(evt) {
     })
     .catch(console.error)
     .finally(() => {
-      setButtonText(submitBtn, false, "Update", "Updating...");
+      setButtonText(submitBtn, false, "Save", "Saving...");
     });
 }
 newPostProfileForm.addEventListener("submit", handleNewPostProfileSubmit);
@@ -236,7 +237,7 @@ newPostProfileForm.addEventListener("submit", handleNewPostProfileSubmit);
 function handleAvatarSubmit(evt) {
   evt.preventDefault();
   const submitBtn = evt.submitter;
-  setButtonText(submitBtn, true, "Post", "Posting");
+  setButtonText(submitBtn, true, "Save", "Saving...");
   api
     .editAvatarInfo({ avatar: avatarInput.value })
     .then((data) => {
@@ -245,7 +246,7 @@ function handleAvatarSubmit(evt) {
     })
     .catch(console.error)
     .finally(() => {
-      setButtonText(submitBtn, false, "Post", "Posting");
+      setButtonText(submitBtn, false, "Save", "Saving...");
     });
 }
 avatarProfileForm.addEventListener("submit", handleAvatarSubmit);
@@ -253,7 +254,7 @@ avatarProfileForm.addEventListener("submit", handleAvatarSubmit);
 function handleDeleteSubmit(evt) {
   evt.preventDefault();
   const submitBtn = evt.submitter;
-  setButtonText(submitBtn, true, "Delete", "Deleting");
+  setButtonText(submitBtn, true, "Delete", "Deleting...");
 
   api
     .deleteCard(selectedCardId)
@@ -263,7 +264,7 @@ function handleDeleteSubmit(evt) {
     })
     .catch(console.error)
     .finally(() => {
-      setButtonText(submitBtn, false, "Delete", "Deleting");
+      setButtonText(submitBtn, false, "Delete", "Deleting...");
     });
 }
 
