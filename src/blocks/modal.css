@@ -239,6 +239,7 @@
   #delete-modal .modal__form {
     flex-direction: column;
     width: 100%;
+    gap: 16px;
   }
 
   #delete-modal .modal__button {
