@@ -24,7 +24,10 @@
   display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
-  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  line-clamp: 3;
+  line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   max-width: 420px;
 }
@@ -109,18 +112,27 @@
     position: relative;
     width: 80px;
     height: 80px;
+    margin: 0 0 12px;
   }
   .profile__avatar {
     height: 80px;
     width: 80px;
-    margin: 0 0 12px;
-    margin-right: 0;
+    margin: 0;
+    display: block;
   }
   .profile__avatar-btn {
-    visibility: visible;
     position: absolute;
     width: 100%;
     height: 100%;
+    top: 0;
+    left: 0;
+    visibility: visible;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
   }
   .profile__avatar-btn::after {
     content: " ";
